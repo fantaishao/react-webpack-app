@@ -1,5 +1,5 @@
 require('normalize.css/normalize.css');
-require('styles/App.css');
+require('styles/App.less');
 
 import React,{Component} from 'react';
 import Login from '../components/login';
