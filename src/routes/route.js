@@ -1,19 +1,39 @@
 import React, {Component} from 'react';
-import {Router, Route, Link, browserHistory} from 'react-router';
+import ReactDOM from 'react-dom';
+// import {Router, Route, Link, hashHistory,browserHistory,Lifecycle} from 'react-router';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-import App from './containers/app';
-import Login from './containers/login';
-import Login from './containers/home';
+import App from '../containers/app';
+import Login from '../components/login';
+import Home from '../components/home';
 
 
-export default class ReactRouter expends Component {
+export default class ReactRouter extends Component {
+  constructor(props) {
+    super(props);
+    this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this);
+  }
+  //缓存里如果没有找到用户名，返回登录界面
+  logIn() {
+    if(sessionStorage.getItem('username') == undefind) {
+      browserHistory.push('/login');
+    }
+  }
+  //退出时清楚session
+  logOut() {
+    sessionStorage.clear();
+  }
   render() {
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <Route path="login" component={Login}>
-        </Route>
-        <Route path="home" component={Home}></Route>
-      </Route>
-    </Router>
+    return (
+      <div>
+        <Router>
+          <Route path="/login" component={Login} onEnter={this.logOut}>
+          </Route>
+          <Route path="/" component={Home} onEnter= {this.logIn}>
+          </Route>
+        </Router>
+      </div>
+    )
   };
 };

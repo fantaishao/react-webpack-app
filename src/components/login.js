@@ -31,8 +31,10 @@ export default class Login extends Component {
 
   signIn(e) {
     if(this.state.username == 'admin' && this.state.password == '123456') {
-      console.log(123);
+      sessionStorage.setItem('name',this.state.username);
       browserHistory.push('/home');
+    }else {
+      sessionStorage.clear();
     }
 
   }
