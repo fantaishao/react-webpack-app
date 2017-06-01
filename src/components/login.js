@@ -5,6 +5,7 @@ require ('bootstrap/dist/css/bootstrap.css');
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {Lifecycle, browserHistory} from 'react-router';
+import Home from '../components/home';
 
 export default class Login extends Component {
   constructor(props) {
@@ -25,14 +26,15 @@ export default class Login extends Component {
   }
   changePassword(e) {
     this.setState({
-      password:e.target.password
+      password:e.target.value
     })
   }
 
   signIn(e) {
     if(this.state.username == 'admin' && this.state.password == '123456') {
+      console.log(123);
       sessionStorage.setItem('name',this.state.username);
-      browserHistory.push('/home');
+      browserHistory('/');
     }else {
       sessionStorage.clear();
     }
@@ -52,11 +54,11 @@ export default class Login extends Component {
                 <div className="col-md-12">
                     <form className="form" role="form" onSubmit={this.signIn}>
                         <div className="form-group">
-                            <input type="text" className="form-control" id="username" placeholder="账号" onChange={this.changeName} value={this.state.username}/>
+                            <input type="text" className="form-control" name="username" id="username" placeholder="账号" onChange={this.changeName}/>
                             <i><img src="../images/user.jpg" alt="" /></i>
                         </div>
                         <div className="form-group password-box" >
-                            <input type="password" className="form-control" placeholder="密码" onChange={this.changePassword} value={this.state.password}/>
+                            <input type="password" className="form-control" name="password" id="password" placeholder="密码" onChange={this.changePassword}/>
                             <i><img src="../images/password.jpg" alt="" /></i>
                         </div>
                         <div className="form-group text-center mtl mbl">

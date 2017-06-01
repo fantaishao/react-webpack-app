@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-// import {Router, Route, Link, hashHistory,browserHistory,Lifecycle} from 'react-router';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import {Router, Route, IndexRoute, Link, hashHistory,browserHistory,Lifecycle} from 'react-router';
 
 import App from '../containers/app';
 import Login from '../components/login';
@@ -26,14 +25,12 @@ export default class ReactRouter extends Component {
   }
   render() {
     return (
-      <div>
-        <Router>
-          <Route path="/login" component={Login} onEnter={this.logOut}>
-          </Route>
-          <Route path="/" component={Home} onEnter= {this.logIn}>
+        <Router history={browserHistory}>
+          <Route path="/" component={App} onEnter={this.logOut}>
+            <IndexRoute component={Home} />
+            <Route path="login" component={Login} onEnter= {this.logIn} />
           </Route>
         </Router>
-      </div>
     )
   };
 };
