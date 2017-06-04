@@ -2,21 +2,24 @@ import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {Router,Route,browserHistory} from 'react-router';
+import {Router,Route,IndexRoute,browserHistory} from 'react-router';
 
 import App from './containers/app';
+import Welcome from './components/welcome';
+
 
 const DBTableContainer = (location,cb)=>{
   require.ensure([],require=>{
     cb(null,require('./components/DBTable').default),'DBTable'}
-  })
-}
+  );
+};
 
 const routes = (
   //provider 用来将redux绑定到react上
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component="App">
+      <Route path="/" component={App}>
+        <IndexRoute component={Welcome}/>
         <Route path="index" >
           //getComponent对于与以前的component方法，只不过getComponent是异步的，只有当路由匹配时，才会调用这个方法
           <Route path="option1" tableName="test" getComponent={DBTableContainer}></Route>
