@@ -64,10 +64,9 @@ export default class Login extends Component {
                   <Input name="username" id="username" value={username}
                     placeholder="用户名" prefix={<Icon type="user" />} suffix={suffix}
                     ref={node => this.usernameInput = node} onChange={this.changeName} />
-                  <input type="text" className="form-control" name="username" id="username" placeholder="账号" onChange={this.changeName}/>
-                  <i><img src="../images/user.jpg" alt="" /></i>
-                  <input type="password" className="form-control" name="password" id="password" placeholder="密码" onChange={this.changePassword}/>
-                  <i><img src="../images/password.jpg" alt="" /></i>
+                  <Input name="username" id="username" value={password}
+                    placeholder="密码" prefix={<Icon type="key" />} suffix={suffix}
+                    ref={node => this.usernameInput = node} onChange={this.changeName} />
                   <button type="submit" className="btn btn-primary btn-block login-btn" >登&nbsp;录</button>
               </form>
           </div>

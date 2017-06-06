@@ -50,7 +50,7 @@ class Sidebar extends Component {
            }else {
              const tmp = this.transfromMenuItem(level2,paths);
              paths.pop();
-             retrun tmp;
+             return tmp;
            }
         });
         paths.pop();
@@ -65,10 +65,11 @@ class Sidebar extends Component {
           <SubMenu key={level1.key} title = {level1Title}>
             {level2Menu}
           </SubMenu>
+        )
       }else {
         const tmp = this.transfromMenuItem(level1,paths,true);
         paths.pop();
-        retrun tmp;
+        return tmp;
       }
     });
 
@@ -88,4 +89,4 @@ class Sidebar extends Component {
   }
 }
 
-export default connect(){Sidebar};
+export default connect()(Sidebar);

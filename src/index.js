@@ -6,7 +6,7 @@ import {Router,Route,IndexRoute,browserHistory} from 'react-router';
 
 import App from './containers/app';
 import Welcome from './components/welcome';
-
+import store from './stores/store.js';  // redux store
 
 const DBTableContainer = (location,cb)=>{
   require.ensure([],require=>{

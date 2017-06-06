@@ -1,6 +1,6 @@
 import {createStore, combineReducers} from 'redux';
 
-import Login '../reducers/Login.js';
+import Login from '../reducers/Login.js';
 
 //初始状态，把每个组件整合起来
 const initState = {
