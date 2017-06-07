@@ -56,18 +56,18 @@ export default class Login extends Component {
     const suffix = username ? <Icon type="close-circle" onClick={this.emitEmpty} /> : null;
 
     return (
-      <div className="login-page" style={{width:100+'%'}}>
-        <div className="login-content">
+      <div id="loginDiv" style={{width:100+'%'}}>
+        <div className="login">
           <div className="login-panel">
-              <p className="login-title text-center mbl text-gray">用户登录</p>
+              <h1 className="login-title text-center mbl text-gray">用户登录</h1>
               <form className="form" role="form" onSubmit={this.signIn}>
-                  <Input name="username" id="username" value={username}
+                  <Input className="login-input" name="username" id="username" value={this.state.username}
                     placeholder="用户名" prefix={<Icon type="user" />} suffix={suffix}
                     ref={node => this.usernameInput = node} onChange={this.changeName} />
-                  <Input name="username" id="username" value={password}
+                  <Input className="login-input" name="password" id="password" value={this.state.password}
                     placeholder="密码" prefix={<Icon type="key" />} suffix={suffix}
-                    ref={node => this.usernameInput = node} onChange={this.changeName} />
-                  <button type="submit" className="btn btn-primary btn-block login-btn" >登&nbsp;录</button>
+                    ref={node => this.passwordInput = node} onChange={this.changePassword} />
+                  <button type="submit" className="btn btn-primary btn-block btn-large">登&nbsp;录</button>
               </form>
           </div>
         </div>

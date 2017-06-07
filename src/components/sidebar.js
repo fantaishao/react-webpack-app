@@ -1,3 +1,5 @@
+require('../styles/Sidebar.less');
+
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
@@ -5,11 +7,14 @@ import {Menu, Icon} from 'antd';
 
 import items from '../datas/menu.js';
 
+const SubMenu = Menu.SubMenu;
+const MenuItem = Menu.Item;
+
 class Sidebar extends Component {
   transfromMenuItem(level, paths, isLevel1) {
     const parentPath = paths.join('/');
     return (
-      <MenuItem key={obj.key}>
+      <MenuItem key={level.key}>
         {level.icon&&<Icon type={level.icon}/>}
         //如果是顶级菜单，没有图标，默认取第一个字
         {isLevel1&&!level.icon&&<span className="invisible-nav-text">{level.name[0]}</span>}
@@ -28,7 +33,7 @@ class Sidebar extends Component {
 
     const menu = items.map((level1) => {
       paths.push(level1.key);
-      live1KeySet.add(level1.key);
+      level1KeySet.add(level1.key);
       if(level1.child) {
         const level2Menu = level1.child.map((level2) => {
            paths.push(level2.key);
@@ -57,7 +62,7 @@ class Sidebar extends Component {
 
         let level1Title;
         if(level1.icon) {
-          level1Title = <span><Icon type={leve1.icon}/><span className="nav-text">{level1.name}</span></span>;
+          level1Title = <span><Icon type={level1.icon}/><span className="nav-text">{level1.name}</span></span>;
         }else {
           level1Title = <span><span className="invisible-nav-text">{level1.name[0]}</span><span className="nav-text">{level1.name}</span></span>;
         }

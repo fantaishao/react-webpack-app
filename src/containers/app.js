@@ -23,37 +23,41 @@ class AppComponent extends Component {
   async componentDidMount() {
     if(!this.props.login) {
       const hide = message.loading('正在获取用户信息...',0);
-      try {
-        const res = await ajax.getCurrentUser();
-        hide();
-
-        if(res.success) {
-          this.state.tryingLogin = false;
-          this.props.handleLoginSuccess(res.data);
-        }else {
-
-        }
-      } catch (e) {
-
+      const username = sessionStorage.getItem('name');
+      if(!username) {
+        this.state.tryingLogin = false;
+      }else {
+        this.state.tryingLogin = true;
       }
+      hide();
     }
   }
   render(){
-   //加载提示
-    if(this.state.tryingLogin) {
-      return (
-        <div className ="center-div"><Spin spinning={true} size="large"/></div>
-      )
-    }
-    //跳转到登陆页面
-    if(!this.props.login) {
+    const hide = message.loading('正在获取用户信息...',0);
+    const username = sessionStorage.getItem('name');
+    hide();
+    
+    if(!username) {
       return <Login/>;
     }
+
     return (
       <div>
         <Sidebar/>
       </div>
     )
+
+
+  //  //加载提示
+  //   if(this.state.tryingLogin) {
+  //     return (
+  //       <div className ="center-div"><Spin spinning={true} size="large"/></div>
+  //     )
+  //   }
+    //跳转到登陆页面
+    // if(!this.props.login) {
+    //   return <Login/>;
+    // }
   }
 }
 
