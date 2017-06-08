@@ -36,13 +36,13 @@ class AppComponent extends Component {
     const hide = message.loading('正在获取用户信息...',0);
     const username = sessionStorage.getItem('name');
     hide();
-    
+
     if(!username) {
       return <Login/>;
     }
 
     return (
-      <div>
+      <div className="ant-layout-base">
         <Sidebar/>
       </div>
     )

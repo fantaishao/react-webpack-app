@@ -7,6 +7,17 @@ let defaultSettings = require('./defaults');
 
 // Add needed plugins here
 let BowerWebpackPlugin = require('bower-webpack-plugin');
+const babelLoaderConfig = {
+  presets:['es2015','stage-0','react'],
+  plugins:[
+    ['import',{
+      libraryName: 'antd',
+      style: true //使用 style： true会把less文件也给加载进来
+    }]
+  ],
+  cacheDirectory: true,
+
+};
 
 let config = Object.assign({}, baseConfig, {
   entry: [
@@ -28,13 +39,21 @@ let config = Object.assign({}, baseConfig, {
 });
 
 // Add needed loaders to the defaults here
-config.module.loaders.push({
-  test: /\.(js|jsx)$/,
-  loader: 'react-hot!babel-loader',
-  include: [].concat(
-    config.additionalPaths,
-    [ path.join(__dirname, '/../src') ]
-  )
-});
+config.module.loaders.push(
+//   {
+//   test: /\.(js|jsx)$/,
+//   loader: 'react-hot!babel-loader',
+//   include: [].concat(
+//     config.additionalPaths,
+//     [ path.join(__dirname, '/../src') ]
+//   ),
+//   options: babelLoaderConfig
+// }
+{
+      test: /\.(js|jsx)$/,
+      loaders: ['react-hot', 'babel-loader?' + JSON.stringify(babelLoaderConfig)],  // react-hot-loader可以不用刷新页面, 如果用普通的dev-server的话会自动刷新页面
+      exclude: /node_modules/,
+    }
+);
 
 module.exports = config;

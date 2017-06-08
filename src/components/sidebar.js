@@ -7,6 +7,8 @@ import {Menu, Icon} from 'antd';
 
 import items from '../datas/menu.js';
 
+require('../styles/Sidebar.less');
+
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
 
@@ -16,7 +18,7 @@ class Sidebar extends Component {
     return (
       <MenuItem key={level.key}>
         {level.icon&&<Icon type={level.icon}/>}
-        //如果是顶级菜单，没有图标，默认取第一个字
+        {/**如果是顶级菜单，没有图标，默认取第一个字**/}
         {isLevel1&&!level.icon&&<span className="invisible-nav-text">{level.name[0]}</span>}
         <Link to={'/${parentPath}'}>
           <span className="nav-text">{level.name}</span>
@@ -85,11 +87,11 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className={this.props.collapse?"antd-layout-sidebar-collapse":"antd-layout-sidebar"}>
-      <Menu theme="dart" mode="inline">
-        {this.menu}
-      </Menu>
-      </div>
+      <aside className={this.props.collapse?"antd-layout-sidebar-collapse":"antd-layout-sidebar"}>
+        <Menu theme="dart" mode="inline">
+          {this.menu}
+        </Menu>
+      </aside>
     )
   }
 }
