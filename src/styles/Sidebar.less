@@ -1,4 +1,13 @@
-// 又到了痛苦的写css的时间了啊...
+.antd-layout-sidebar-collapse,
+.antd-layout-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 220px;
+  height: 100%;
+  background: #fff;
+}
 
 // less虽然引入了变量/函数/流程控制之类的, 更类似编程语言了, 但写法还是有些奇怪的
 @sidebarCollapsible: true; // 侧边栏是否可折叠, 这个变量是通过webpack less-loader传进来的
@@ -20,6 +29,7 @@
 }
 
 .ant-layout-sidebar-base {
+  height: 100%;
   background: #404040;
   position: absolute;
   overflow: auto;
