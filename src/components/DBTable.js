@@ -4,10 +4,12 @@ import {Table} from 'antd';
 
 const dataSource = [{
   key: '1',
+  name: '樱桃小丸子',
   age: 32,
   address: '西湖区湖底公园1号'
 }, {
   key: '2',
+  name: '蜡笔小新',
   age: 42,
   address: '西湖区湖底公园1号'
 }];
