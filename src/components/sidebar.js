@@ -15,12 +15,13 @@ const MenuItem = Menu.Item;
 class Sidebar extends Component {
   transfromMenuItem(level, paths, isLevel1) {
     const parentPath = paths.join('/');
+    console.log('parentPath',parentPath);
     return (
       <MenuItem key={level.key}>
         {level.icon&&<Icon type={level.icon}/>}
         {/**如果是顶级菜单，没有图标，默认取第一个字**/}
         {isLevel1&&!level.icon&&<span className="invisible-nav-text">{level.name[0]}</span>}
-        <Link to={'/${parentPath}'}>
+        <Link to={`/${parentPath}`} style={{ display: 'inline' }}>
           <span className="nav-text">{level.name}</span>
         </Link>
       </MenuItem>

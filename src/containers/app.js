@@ -8,7 +8,7 @@ import {Spin, message} from 'antd';
 
 import Login from '../components/login';
 import Sidebar from '../components/sidebar';
-import Navbar from '../components/Breadcrumb';
+import Navbar from '../components/navbar';
 import {loginSuccessCreator} from '../reducers/Login';
 import ajax from '../util/ajax.js';
 
@@ -45,7 +45,14 @@ class AppComponent extends Component {
     return (
       <div className="ant-layout-base">
         <Sidebar/>
-        <Navbar/>
+        <header>
+          <div className="ant-row">
+            <Navbar/>
+          </div>
+        </header>
+        <div className="ant-layout-container">
+          {this.props.children}
+        </div>
       </div>
     )
 

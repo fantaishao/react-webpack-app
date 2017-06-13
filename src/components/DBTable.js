@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 class DBTable extends components {
   render() {
     return (
-      <div></div>
+      <div>1111</div>
     )
   }
 }
