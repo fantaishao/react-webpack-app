@@ -1,5 +1,6 @@
 require('normalize.css/normalize.css');
 require('styles/App.less');
+require('styles/space.less');
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -50,7 +51,7 @@ class AppComponent extends Component {
             <Navbar/>
           </div>
         </header>
-        <div className="ant-layout-container">
+        <div className="ant-layout-container main-content mtn mbn mrn">
           {this.props.children}
         </div>
       </div>
