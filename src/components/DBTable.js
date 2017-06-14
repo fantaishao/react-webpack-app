@@ -1,37 +1,30 @@
+require('../styles/table.less');
+
 import React ,{Component}from 'react';
 import ReactDom from 'react-dom';
-import {Table} from 'antd';
-
-const dataSource = [{
-  key: '1',
-  name: '樱桃小丸子',
-  age: 32,
-  address: '西湖区湖底公园1号'
-}, {
-  key: '2',
-  name: '蜡笔小新',
-  age: 42,
-  address: '西湖区湖底公园1号'
-}];
-
-const columns = [{
-  title: '姓名',
-  dataIndex: 'name',
-  key: 'name',
-}, {
-  title: '年龄',
-  dataIndex: 'age',
-  key: 'age',
-}, {
-  title: '住址',
-  dataIndex: 'address',
-  key: 'address',
-}];
+import {Table, Pagination } from 'antd';
+import {columns, data} from '../datas/table.config';
 
 class DBTable extends Component {
+  state = {
+    selectedRowKeys: [],  // Check here to configure the default column
+    loading: false,
+  };
+  onSelectChange = (selectedRowKeys) => {
+    console.log('selectedRowKeys changed: ', selectedRowKeys);
+    this.setState({ selectedRowKeys });
+  }
   render() {
+    const { loading, selectedRowKeys } = this.state;
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: this.onSelectChange,
+    };
     return (
-      <Table dataSource={dataSource} columns={columns} />
+      <div>
+        <Table rowSelection={rowSelection} dataSource={data} columns={columns} pagination={false} />
+        <Pagination current={1} defaultPageSize={7} total={50}></Pagination >
+      </div>
     )
   }
 }
